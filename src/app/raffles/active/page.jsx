@@ -19,9 +19,11 @@ export default function ActiveRaffle() {
       <h1>🎟 Sorteio Ativo</h1>
       {raffle.raffle ? (
         <>
-          <p><b>Data:</b> {new Date(raffle.raffle.drawDate).toLocaleString("pt-BR")}</p>
+          <p><b>Data do sorteio:</b> {new Date(raffle.raffle.drawDate).toLocaleString("pt-BR")}</p>
           <p><b>Restantes:</b> {raffle.remainingTotalNumbers}</p>
-          <p><b>Restantes por usuário:</b> {raffle.remainingUserNumbers}</p>
+          <p><b>Ativo:</b> {raffle.raffle.isActive ? 'sim' : 'não'}</p>
+          <p><b>Numeros por user:</b> {raffle.raffle.maxUserRaffleNumbers}</p>
+          <p><b>Prêmio R$:</b> {raffle.raffle.value}</p>
 
           {raffle.userNumbers?.length > 0 && (
             <div>
