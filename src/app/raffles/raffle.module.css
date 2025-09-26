@@ -1,11 +1,16 @@
-/* raffle.module.css */
 .container {
   max-width: 800px;
-  margin: 2rem auto;
   padding: 2rem;
-  background-color: #fff;   /* fundo branco */
-  border-radius: 8px;       /* bordas arredondadas */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* leve sombra */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .title {
@@ -24,10 +29,91 @@
   background-color: #0070f3;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 16px;
+  height: 40px;
   cursor: pointer;
+  width: 360px;
+}
+
+
+
+.button_status:hover {
+  background-color: #9bd4b8;
 }
 
 .button:hover {
   background-color: #005bb5;
+}
+
+.card {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.headerLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.iconButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.iconButton:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.editBlock {
+  margin-top: 16px;
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  display: grid;
+  gap: 10px;
+  background: #ececec;
+}
+
+.checkboxLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.ghost {
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid red;
+  color: red;
+  background: #ffffff;
+}
+
+
+.save_button {
+  padding: 8px 16px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid green;
+  color: green;
+  background: #ffffff;
 }

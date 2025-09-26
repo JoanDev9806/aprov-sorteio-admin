@@ -1,11 +1,13 @@
 :root {
-  --background: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);;
+  --background: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+  ;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);;
+    --background: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+    ;
     --foreground: #080808;
   }
 }
@@ -14,6 +16,10 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+td {
+  padding: 10px;
 }
 
 body {
@@ -30,9 +36,33 @@ body {
   margin: 0;
 }
 
+input {
+  background: #fff;
+  border-radius: 16px;
+  height: 40px;
+  color: #080808;
+  padding-left: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 360px;
+  cursor: pointer;
+}
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input[type="date"] {
+  -webkit-appearance: auto;
+  appearance: auto;
+}
+
+/* força o ícone a ficar preto */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;                 /* garante que aparece */
+  filter: grayscale(1) brightness(0) contrast(200%);
+  /* ajuste fino se quiser 
+     ex: filter: invert(0) brightness(0) saturate(100%) contrast(200%); */
 }
 
 @media (prefers-color-scheme: dark) {
