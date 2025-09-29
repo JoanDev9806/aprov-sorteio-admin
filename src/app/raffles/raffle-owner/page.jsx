@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { getOwnerByNumber } from "@/services/raffleService";
 import styles from "./owner.module.css";
-
+import RequireAdmin from "@/components/RequireAdmin/RequireAdmin";
 export default function RaffleOwnerPage() {
     const [raffleId, setRaffleId] = useState("");
     const [number, setNumber] = useState("");
@@ -21,6 +21,7 @@ export default function RaffleOwnerPage() {
     };
 
     return (
+        <RequireAdmin>
         <div style={{
             margin: "40px 0",
             display: 'flex',
@@ -37,6 +38,7 @@ export default function RaffleOwnerPage() {
                     placeholder="ID do Sorteio (raffleId)"
                     value={raffleId}
                     onChange={(e) => setRaffleId(e.target.value)}
+                    className={styles.input}
                 />
 
                 <input
@@ -44,9 +46,10 @@ export default function RaffleOwnerPage() {
                     placeholder="Número da sorte (ex: 62)"
                     value={number}
                     onChange={(e) => setNumber(e.target.value)}
+                          className={styles.input}
                 />
 
-                <button onClick={handleSearch}>Buscar</button>
+                <button onClick={handleSearch} className={styles.button}>Buscar</button>
 
                 {error && <p className={styles.error}>{error}</p>}
 
@@ -73,5 +76,6 @@ export default function RaffleOwnerPage() {
                 )}
             </div>
         </div>
+        </RequireAdmin>
     );
 }

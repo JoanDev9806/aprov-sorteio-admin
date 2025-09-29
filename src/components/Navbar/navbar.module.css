@@ -10,7 +10,7 @@
 .logo {
   font-weight: bold;
   font-size: 18px;
-}   
+}
 
 .links {
   display: flex;
@@ -39,6 +39,15 @@
   background: none;
   border: none;
   color: white;
+  cursor: pointer;
+}
+
+.logout_style {
+  background: transparent;
+  border: none;
+  color: black;
+  font-weight: 700;
+  font-size: medium;
   cursor: pointer;
 }
 

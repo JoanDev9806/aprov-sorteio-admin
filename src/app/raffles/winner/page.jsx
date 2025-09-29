@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { createWinner } from "@/services/raffleService";
 import styles from "../raffle.module.css";
+import RequireAdmin from "@/components/RequireAdmin/RequireAdmin";
+
 
 export default function WinnerPage() {
     const [userUid, setUserUid] = useState("");
@@ -33,6 +35,7 @@ export default function WinnerPage() {
     };
 
     return (
+        <RequireAdmin>
         <div style={{
             margin: "40px 0",
             display: 'flex',
@@ -80,5 +83,6 @@ export default function WinnerPage() {
                 </div>
             </div>
         </div>
+        </RequireAdmin>
     );
 }

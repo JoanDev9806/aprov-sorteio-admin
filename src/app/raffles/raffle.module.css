@@ -35,7 +35,11 @@
   width: 360px;
 }
 
-
+.button_status {
+  width: 140px;
+  height: 40px;
+  cursor: pointer;
+}
 
 .button_status:hover {
   background-color: #9bd4b8;
@@ -106,7 +110,6 @@
   color: red;
   background: #ffffff;
 }
-
 
 .save_button {
   padding: 8px 16px;

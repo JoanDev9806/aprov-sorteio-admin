@@ -57,12 +57,9 @@ input[type="date"] {
   appearance: auto;
 }
 
-/* força o ícone a ficar preto */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 1;                 /* garante que aparece */
+  opacity: 1;
   filter: grayscale(1) brightness(0) contrast(200%);
-  /* ajuste fino se quiser 
-     ex: filter: invert(0) brightness(0) saturate(100%) contrast(200%); */
 }
 
 @media (prefers-color-scheme: dark) {
