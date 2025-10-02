@@ -12,40 +12,41 @@ export default function ExportarCsvPage() {
   const [remessaSequencial, setRemessaSequencial] = useState("1");
   const [seqArquivo, setSeqArquivo] = useState("0001");
 
-const handleExport = async () => {
-  if (!raffleId || !competencia || !dataSorteio) {
-    alert("Preencha os campos obrigatórios");
-    return;
-  }
 
-  try {
-    const url = `/raffle/${raffleId}/export-capemisa?competencia=${competencia}&serie=${serie}&dataSorteio=${dataSorteio}&valorTitulo=${valorTitulo}&remessaSequencial=${remessaSequencial}&seqArquivo=${seqArquivo}`;
-    
-    // 👇 importante: pedir como blob
-    const res = await api.get(url, { responseType: "blob" });
-
-    // criar link de download
-    const blob = new Blob([res.data], { type: "text/csv;charset=utf-8;" });
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-
-    // tenta pegar nome do arquivo do header do backend
-    let fileName = "export.csv";
-    const dispo = res.headers["content-disposition"];
-    if (dispo) {
-      const match = dispo.match(/filename="?([^"]+)"?/);
-      if (match?.[1]) fileName = match[1];
+  const handleExport = async () => {
+    if (!raffleId || !competencia || !dataSorteio) {
+      alert("Preencha os campos obrigatórios");
+      return;
     }
 
-    link.setAttribute("download", fileName);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } catch (err) {
-    console.error(err);
-    alert("Erro ao gerar CSV");
-  }
-};
+    try {
+      // converter antes de mandar
+      const dataReq = dataSorteio.replace(/-/g, ""); // yyyyMMdd
+
+      const url = `/raffle/${raffleId}/export-capemisa?competencia=${competencia}&serie=${serie}&dataSorteio=${dataReq}&valorTitulo=${valorTitulo}&remessaSequencial=${remessaSequencial}&seqArquivo=${seqArquivo}`;
+
+      const res = await api.get(url, { responseType: "blob" });
+
+      const blob = new Blob([res.data], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+
+      let fileName = "export.csv";
+      const dispo = res.headers["content-disposition"];
+      if (dispo) {
+        const match = dispo.match(/filename="?([^"]+)"?/);
+        if (match?.[1]) fileName = match[1];
+      }
+
+      link.setAttribute("download", fileName);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao gerar CSV");
+    }
+  };
 
   return (
     <div style={{ maxWidth: 600, margin: "40px auto" }} className={styles.container}>
@@ -61,7 +62,11 @@ const handleExport = async () => {
       <input value={serie} onChange={e => setSerie(e.target.value)} />
 
       <label>Data do Sorteio</label>
-      <input type="date" value={dataSorteio} onChange={e => setDataSorteio(e.target.value.replace(/-/g, ""))} />
+      <input
+        type="date"
+        value={dataSorteio}
+        onChange={e => setDataSorteio(e.target.value)} // mantém yyyy-MM-dd
+      />
 
       <label>Valor do Título</label>
       <input type="number" step="0.01" value={valorTitulo} onChange={e => setValorTitulo(e.target.value)} />
