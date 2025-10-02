@@ -4,7 +4,6 @@ const api = axios.create({
   baseURL: "https://aprov-creditcard.azurewebsites.net/api",
 });
 
-// injeta token em toda request
 api.interceptors.request.use((config) => {
   if (typeof window !== "undefined") {
     const t = localStorage.getItem("admin_jwt");
@@ -13,7 +12,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// trata 401/403 globalmente
 api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -21,8 +19,6 @@ api.interceptors.response.use(
       const status = err?.response?.status;
       if (status === 401 || status === 403) {
         localStorage.removeItem("admin_jwt");
-        // opcional: feedback amigável
-        // alert("Sua sessão expirou. Faça login novamente.");
         window.location.href = "/login";
       }
     }

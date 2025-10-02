@@ -33,6 +33,7 @@ export default function Navbar() {
           <Link href="/raffles" onClick={() => setMenuOpen(false)}>Sorteio Ativo</Link>
           <Link href="/raffles/winner" onClick={() => setMenuOpen(false)}>Definir Vencedor</Link>
           <Link href="/raffles/raffle-owner" onClick={() => setMenuOpen(false)}>Buscar Número</Link>
+          <Link href="/raffles/export-data" onClick={() => setMenuOpen(false)}>Gerar relatório</Link>
           {logged ? (
             <button onClick={logout} className={styles.logout_style}>Sair</button>
           ) : (
